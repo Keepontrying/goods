@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyw.source.dao.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.lyw.source.entity.OrderDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dining_order_id" jdbcType="INTEGER" property="diningOrderId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="number" jdbcType="DECIMAL" property="number" />
+    <result column="buy_address" jdbcType="VARCHAR" property="buyAddress" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dining_order_id, price, number, buy_address, amount, created_date, modified_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyw.source.entity.OrderDetail">
+    insert into order_detail (id, dining_order_id, price, 
+      number, buy_address, amount, 
+      created_date, modified_date)
+    values (#{id,jdbcType=INTEGER}, #{diningOrderId,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, 
+      #{number,jdbcType=DECIMAL}, #{buyAddress,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{modifiedDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lyw.source.entity.OrderDetail">
+    insert into order_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="diningOrderId != null">
+        dining_order_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="buyAddress != null">
+        buy_address,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="diningOrderId != null">
+        #{diningOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=DECIMAL},
+      </if>
+      <if test="buyAddress != null">
+        #{buyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lyw.source.entity.OrderDetail">
+    update order_detail
+    <set>
+      <if test="diningOrderId != null">
+        dining_order_id = #{diningOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=DECIMAL},
+      </if>
+      <if test="buyAddress != null">
+        buy_address = #{buyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lyw.source.entity.OrderDetail">
+    update order_detail
+    set dining_order_id = #{diningOrderId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      number = #{number,jdbcType=DECIMAL},
+      buy_address = #{buyAddress,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

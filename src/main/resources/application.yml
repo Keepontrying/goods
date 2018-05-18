@@ -1,0 +1,21 @@
+server:
+  port : 8087
+
+
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/liang?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true
+    username: root
+    password:
+    maxPoolSize: 100
+  thymeleaf:
+        mode: HTML5
+        encoding: UTF-8
+        cache: false
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.lyw.source.entity
+
+

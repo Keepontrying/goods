@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyw.source.dao.DiningOrderMapper">
+  <resultMap id="BaseResultMap" type="com.lyw.source.entity.DiningOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="batch_no" jdbcType="VARCHAR" property="batchNo" />
+    <result column="dining_room_id" jdbcType="INTEGER" property="diningRoomId" />
+    <result column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="buyer" jdbcType="INTEGER" property="buyer" />
+    <result column="sale" jdbcType="INTEGER" property="sale" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, batch_no, dining_room_id, menu_id, buyer, sale, created_date, modified_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dining_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dining_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lyw.source.entity.DiningOrder">
+    insert into dining_order (id, batch_no, dining_room_id, 
+      menu_id, buyer, sale, 
+      created_date, modified_date)
+    values (#{id,jdbcType=INTEGER}, #{batchNo,jdbcType=VARCHAR}, #{diningRoomId,jdbcType=INTEGER}, 
+      #{menuId,jdbcType=INTEGER}, #{buyer,jdbcType=INTEGER}, #{sale,jdbcType=INTEGER}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{modifiedDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lyw.source.entity.DiningOrder">
+    insert into dining_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="batchNo != null">
+        batch_no,
+      </if>
+      <if test="diningRoomId != null">
+        dining_room_id,
+      </if>
+      <if test="menuId != null">
+        menu_id,
+      </if>
+      <if test="buyer != null">
+        buyer,
+      </if>
+      <if test="sale != null">
+        sale,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="modifiedDate != null">
+        modified_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="batchNo != null">
+        #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="diningRoomId != null">
+        #{diningRoomId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null">
+        #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="buyer != null">
+        #{buyer,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null">
+        #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lyw.source.entity.DiningOrder">
+    update dining_order
+    <set>
+      <if test="batchNo != null">
+        batch_no = #{batchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="diningRoomId != null">
+        dining_room_id = #{diningRoomId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null">
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+      <if test="buyer != null">
+        buyer = #{buyer,jdbcType=INTEGER},
+      </if>
+      <if test="sale != null">
+        sale = #{sale,jdbcType=INTEGER},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedDate != null">
+        modified_date = #{modifiedDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lyw.source.entity.DiningOrder">
+    update dining_order
+    set batch_no = #{batchNo,jdbcType=VARCHAR},
+      dining_room_id = #{diningRoomId,jdbcType=INTEGER},
+      menu_id = #{menuId,jdbcType=INTEGER},
+      buyer = #{buyer,jdbcType=INTEGER},
+      sale = #{sale,jdbcType=INTEGER},
+      created_date = #{createdDate,jdbcType=TIMESTAMP},
+      modified_date = #{modifiedDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
