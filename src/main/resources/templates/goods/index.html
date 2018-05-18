@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,51 +50,70 @@
                     <ul>
                         <!-- 欢迎语 -->
                         <li class="am-text-sm tpl-header-navbar-welcome">
-                            <a href="javascript:;" th:text="${test}">欢迎你, <span>测试账号</span> </a>
+                            <a href="javascript:;" >欢迎你, <span th:text="${username}">测试账号</span> </a>
                         </li>
 
                         <!-- 新邮件 -->
                         <li class="am-dropdown tpl-dropdown" data-am-dropdown>
                             <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
                                 <i class="am-icon-envelope"></i>
-                                <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
+                                <span class="am-badge am-badge-success am-round item-feed-badge" th th:text="${6}">4</span>
                             </a>
                             <!-- 弹出列表 -->
                             <ul class="am-dropdown-content tpl-dropdown-content">
-                                <li class="tpl-dropdown-menu-messages">
-                                    <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
-                                        <div class="menu-messages-ico">
-                                            <img src="../../assets/img/user04.png" alt="">
-                                        </div>
-                                        <div class="menu-messages-time">
-                                            3小时前
-                                        </div>
-                                        <div class="menu-messages-content">
-                                            <div class="menu-messages-content-title">
-                                                <i class="am-icon-circle-o am-text-success"></i>
-                                                <span>夕风色</span>
-                                            </div>
-                                            <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>
-                                            <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
-                                        </div>
-                                    </a>
-                                </li>
+                                <!--<li class="tpl-dropdown-menu-messages">-->
+                                    <!--<a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">-->
+                                        <!--<div class="menu-messages-ico">-->
+                                            <!--<img src="../../assets/img/user04.png" alt="">-->
+                                        <!--</div>-->
+                                        <!--<div class="menu-messages-time">-->
+                                            <!--3小时前-->
+                                        <!--</div>-->
+                                        <!--<div class="menu-messages-content">-->
+                                            <!--<div class="menu-messages-content-title">-->
+                                                <!--<i class="am-icon-circle-o am-text-success"></i>-->
+                                                <!--<span>夕风色</span>-->
+                                            <!--</div>-->
+                                            <!--<div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI 的成长，则离不开用户的支持。 </div>-->
+                                            <!--<div class="menu-messages-content-time">2016-09-21 下午 16:40</div>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</li>-->
 
-                                <li class="tpl-dropdown-menu-messages">
+                                <!--<li class="tpl-dropdown-menu-messages">-->
+                                    <!--<a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">-->
+                                        <!--<div class="menu-messages-ico">-->
+                                            <!--<img src="../../assets/img/user02.png" alt="">-->
+                                        <!--</div>-->
+                                        <!--<div class="menu-messages-time">-->
+                                            <!--5天前-->
+                                        <!--</div>-->
+                                        <!--<div class="menu-messages-content">-->
+                                            <!--<div class="menu-messages-content-title">-->
+                                                <!--<i class="am-icon-circle-o am-text-warning"></i>-->
+                                                <!--<span>禁言小张</span>-->
+                                            <!--</div>-->
+                                            <!--<div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>-->
+                                            <!--<div class="menu-messages-content-time">2016-09-16 上午 09:23</div>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+                                <!--列表循环-->
+                                <li class="tpl-dropdown-menu-messages" th:each="user,userStat:${userList}">
                                     <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                         <div class="menu-messages-ico">
                                             <img src="../../assets/img/user02.png" alt="">
                                         </div>
-                                        <div class="menu-messages-time">
+                                        <div class="menu-messages-time" th:text="${user.emailDays}">
                                             5天前
                                         </div>
                                         <div class="menu-messages-content">
                                             <div class="menu-messages-content-title">
                                                 <i class="am-icon-circle-o am-text-warning"></i>
-                                                <span>禁言小张</span>
+                                                <span th:text="${user.userName}">禁言小张</span>
                                             </div>
-                                            <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
-                                            <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
+                                            <div class="am-text-truncate" th:text="${user.emailTopic}"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。 </div>
+                                            <div class="menu-messages-content-time" th:text="${#dates.format(user.emailDays,'yyyy-MM-dd 上午 hh:mm')}">2016-09-16 上午 09:23</div>
                                         </div>
                                     </a>
                                 </li>
@@ -109,7 +129,7 @@
                         <li class="am-dropdown" data-am-dropdown>
                             <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
                                 <i class="am-icon-bell"></i>
-                                <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
+                                <span class="am-badge am-badge-warning am-round item-feed-badge" th:text="${10}">5</span>
                             </a>
 
                             <!-- 弹出列表 -->
@@ -217,7 +237,7 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="form.html">
+                    <a href="../../form.html">
                         <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
 
                     </a>
@@ -307,7 +327,7 @@
                                     </div>
                                 </div>
                                 <div class="am-fr am-cf">
-                                    <div class="widget-fluctuation-description-amount text-success" am-cf>
+                                    <div class="widget-fluctuation-description-amount text-success">
                                         +￥30420.56
 
                                     </div>
