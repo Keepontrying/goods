@@ -2,6 +2,7 @@ package com.lyw.source.controller;
 
 import com.lyw.source.Properties.SpringDataSource;
 import com.lyw.source.dao.MenuMapper;
+import com.lyw.source.entity.K_User;
 import com.lyw.source.entity.Menu;
 import com.lyw.source.entity.User;
 import org.slf4j.Logger;
@@ -68,7 +69,16 @@ public class GoodsController {
         rows.add(user);
         rows.add(user1);
 
+
+
         return rows;
+    }
+
+    public static void main(String[] args) {
+        Object o =DemoUtils.funnymen("liangywuu");
+        K_User k_user = new com.lyw.source.entity.K_User("s",10);
+        System.err.println(k_user.getClass());
+        System.err.println(o);
     }
 
 }
